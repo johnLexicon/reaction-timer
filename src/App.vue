@@ -1,5 +1,5 @@
 <template>
-  <div class="container d-flex flex-column align-items-center m-5">
+  <div class="container d-flex flex-column align-items-center m-auto">
     <h1 class="text-secondary mb-3">Reaction Game</h1>
     <button
       class="btn btn-success mb-3"

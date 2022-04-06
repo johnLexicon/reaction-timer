@@ -4,7 +4,7 @@
     @click="handleClick"
     class="bg-success text-light text-center rounded"
   >
-    <p class="text-light p-5">Click inside me</p>
+    <p class="text-light p-5">Click Me</p>
   </div>
 </template>
 
@@ -12,7 +12,6 @@
 export default {
   name: "Block",
   mounted() {
-    console.log("Block has been mounted");
     this.startTime = Date.now();
   },
   data() {
