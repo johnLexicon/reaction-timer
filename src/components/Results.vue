@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <p>Reaction time - {{ reactionTime }}</p>
+    <p>Reaction time - {{ totalTime }}</p>
     <h1 class="text-success">{{ gameResult }}</h1>
   </div>
 </template>
@@ -22,9 +22,18 @@ class GameResult {
 
 export default {
   name: "Results",
+  props: {
+    totalTime: {
+      type: Number,
+      required: true,
+    },
+  },
   computed: {
     gameResult() {
-      return GameResult.THE_FLASH;
+      console.log(this.$props.totalTime);
+      if (this.$props.totalTime <= 300) return GameResult.THE_FLASH;
+      else if (this.$props.totalTime <= 600) return GameResult.ALLRIGHT;
+      else return GameResult.SNAIL;
     },
   },
 };

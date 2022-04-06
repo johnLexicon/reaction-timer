@@ -1,18 +1,15 @@
 <template>
-  <div
-    class="
-      container
-      vh-100
-      d-flex
-      flex-column
-      align-items-center
-      justify-content-around
-    "
-  >
-    <h1 class="text-secondary">Reaction Game</h1>
-    <button class="btn btn-success">Start</button>
-    <Block />
-    <Results />
+  <div class="container d-flex flex-column align-items-center m-5">
+    <h1 class="text-secondary mb-3">Reaction Game</h1>
+    <button
+      class="btn btn-success mb-3"
+      @click="handleStart"
+      :disabled="hasStarted"
+    >
+      Start
+    </button>
+    <Block @onEnded="handleEnd" v-if="hasStarted" />
+    <Results :totalTime="totalTime" v-if="hasEnded" />
   </div>
 </template>
 
@@ -24,6 +21,24 @@ export default {
   components: {
     Block,
     Results,
+  },
+  data() {
+    return {
+      hasStarted: false,
+      hasEnded: false,
+      totalTime: null,
+    };
+  },
+  methods: {
+    handleStart() {
+      this.hasStarted = true;
+      this.hasEnded = false;
+    },
+    handleEnd(totalTime) {
+      this.totalTime = totalTime;
+      this.hasEnded = true;
+      this.hasStarted = false;
+    },
   },
 };
 </script>
