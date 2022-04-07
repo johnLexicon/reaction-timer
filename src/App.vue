@@ -8,7 +8,7 @@
     >
       Start
     </button>
-    <Block @onEnded="handleEnd" v-if="hasStarted" />
+    <Block @onEnded="handleEnd" v-if="hasStarted" :delayTime="delayTime" />
     <Results :totalTime="totalTime" v-if="hasEnded" />
   </div>
 </template>
@@ -26,11 +26,13 @@ export default {
     return {
       hasStarted: false,
       hasEnded: false,
+      delayTime: null,
       totalTime: null,
     };
   },
   methods: {
     handleStart() {
+      this.delayTime = 2000 + Math.random() * 5000;
       this.hasStarted = true;
       this.hasEnded = false;
     },

@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <p>Reaction time - {{ totalTime }}</p>
+    <p>Reaction time - {{ totalTime }} ms</p>
     <h1 class="text-success">{{ gameResult }}</h1>
   </div>
 </template>
@@ -30,9 +30,8 @@ export default {
   },
   computed: {
     gameResult() {
-      console.log(this.$props.totalTime);
-      if (this.$props.totalTime <= 300) return GameResult.THE_FLASH;
-      else if (this.$props.totalTime <= 600) return GameResult.ALLRIGHT;
+      if (this.$props.totalTime <= 200) return GameResult.THE_FLASH;
+      else if (this.$props.totalTime <= 500) return GameResult.ALLRIGHT;
       else return GameResult.SNAIL;
     },
   },

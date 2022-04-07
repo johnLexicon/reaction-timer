@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="showBlock"
     type="button"
     @click="handleClick"
     class="bg-success text-light text-center rounded"
@@ -11,11 +12,20 @@
 <script>
 export default {
   name: "Block",
+  props: {
+    delayTime: {
+      type: Number,
+      required: true,
+    },
+  },
   mounted() {
-    this.startTime = Date.now();
+    setTimeout(() => {
+      this.showBlock = true;
+    }, this.$props.delayTime);
   },
   data() {
     return {
+      showBlock: false,
       startTime: null,
       endTime: null,
     };
@@ -29,6 +39,11 @@ export default {
   computed: {
     totalTime() {
       return this.endTime - this.startTime;
+    },
+  },
+  watch: {
+    showBlock(newValue, oldValue) {
+      if (newValue === true) this.startTime = Date.now();
     },
   },
 };
